@@ -5,8 +5,13 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="laravel">
-            <directory>tests</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/app/Application/*</directory>
+            <directory suffix="Test.php">./tests/app/Domain/*</directory>
+
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/app/Infrastructure/*</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
