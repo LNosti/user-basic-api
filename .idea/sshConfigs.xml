@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="https://github.com/LNosti/user-basic-api" id="3ecd9264-fff2-433a-8b91-c36a6dd93ca3" port="22" nameFormat="DESCRIPTIVE" username="OscarJordanGil" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
