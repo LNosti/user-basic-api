@@ -7,7 +7,7 @@ use Exception;
 use PhpParser\Node\Scalar\String_;
 use function PHPUnit\Framework\isEmpty;
 
-class IsEarlyAdopterService
+class UserService
 {
     /**
      * @var UserDataSource
@@ -15,7 +15,7 @@ class IsEarlyAdopterService
     private $userDataSource;
 
     /**
-     * IsEarlyAdopterService constructor.
+     * UserService constructor.
      * @param UserDataSource $userDataSource
      */
     public function __construct(UserDataSource $userDataSource)
@@ -33,8 +33,6 @@ class IsEarlyAdopterService
 
         $user = $this->userDataSource->findById($id);
 
-        print_r($user -> getId());
-        print_r($user -> getEmail());
 
         if (!isEmpty($id)){
             return 1;

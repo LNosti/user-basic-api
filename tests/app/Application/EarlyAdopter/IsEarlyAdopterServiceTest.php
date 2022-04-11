@@ -2,7 +2,7 @@
 
 namespace Tests\app\Application\EarlyAdopter;
 
-use App\Application\EarlyAdopter\IsEarlyAdopterService;
+use App\Application\EarlyAdopter\UserService;
 use App\Application\UserDataSource\UserDataSource;
 use App\Domain\User;
 use Exception;
@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class IsEarlyAdopterServiceTest extends TestCase
 {
-    private IsEarlyAdopterService $isEarlyAdopterService;
+    private UserService $isEarlyAdopterService;
     private UserDataSource $userDataSource;
 
     /**
@@ -23,7 +23,7 @@ class IsEarlyAdopterServiceTest extends TestCase
 
         $this->userDataSource = Mockery::mock(UserDataSource::class);
 
-        $this->isEarlyAdopterService = new IsEarlyAdopterService($this->userDataSource);
+        $this->isEarlyAdopterService = new UserService($this->userDataSource);
     }
 
     /**
