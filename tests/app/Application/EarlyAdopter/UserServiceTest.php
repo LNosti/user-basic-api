@@ -49,7 +49,7 @@ class UserServiceTest extends TestCase
     /**
      * @test
      */
-    public function idExistingReturnItsParameters()
+    public function idExistingReturnsItsParameters()
     {
         $id = 1;
 

@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function userWithIdNotExist()
+    public function userWithIdDoesNotExist()
     {
         $this->userDataSource
             ->expects('findById')
