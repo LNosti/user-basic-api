@@ -9,7 +9,7 @@ use Exception;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-class IsEarlyAdopterServiceTest extends TestCase
+class UserServiceTest extends TestCase
 {
     private UserService $isEarlyAdopterService;
     private UserDataSource $userDataSource;

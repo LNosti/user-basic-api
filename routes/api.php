@@ -26,4 +26,4 @@ Route::get(
 );
 
 Route::get('users/{userId}', UserController::class);
-Route::get('users/list', usersListController::class);
+//Route::get('users/list', usersListController::class);

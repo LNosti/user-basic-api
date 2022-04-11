@@ -7,4 +7,5 @@ use App\Domain\User;
 Interface UserDataSource
 {
     public function findById(int $id): User;
+    public function getList(): array;
 }

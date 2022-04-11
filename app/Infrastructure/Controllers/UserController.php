@@ -10,20 +10,20 @@ use Illuminate\Routing\Controller as BaseController;
 
 class UserController extends BaseController
 {
-    private $isEarlyAdopterService;
+    private $UserService;
 
     /**
      * UserController constructor.
      */
-    public function __construct(UserService $isEarlyAdopterService)
+    public function __construct(UserService $UserService)
     {
-        $this->isEarlyAdopterService = $isEarlyAdopterService;
+        $this->UserService = $UserService;
     }
 
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $isEarlyAdopter = $this->isEarlyAdopterService->execute($id);
+            $UserService = $this->UserService->execute($id);
         } catch (Exception $exception) {
             return response()->json([
                 'error' => $exception->getMessage()
@@ -31,7 +31,7 @@ class UserController extends BaseController
         }
 
         return response()->json([
-            'res' => $isEarlyAdopter
+            'res' => $UserService
         ], Response::HTTP_OK);
     }
 }

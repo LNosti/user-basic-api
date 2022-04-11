@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use Mockery;
 use Tests\TestCase;
 
-class IsEarlyAdopterUserControllerTest extends TestCase
+class UserControllerTest extends TestCase
 {
     private UserDataSource $userDataSource;
 
