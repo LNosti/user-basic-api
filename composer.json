@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "8.0",
+        "php": "^8.0",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -22,12 +22,16 @@
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpro/grumphp": "^1.10",
+        "phpunit/phpunit": "^9.3.10"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
     },
     "extra": {
         "laravel": {

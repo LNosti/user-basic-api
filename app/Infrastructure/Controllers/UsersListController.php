@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Controllers;
 
 use App\Application\EarlyAdopter\UserService;
+
 use App\Application\EarlyAdopter\UsersListService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -12,11 +13,13 @@ use Exception;
 
 class usersListController extends BaseController
 {
+
     private $userListService;
 
     /**
      * UserController constructor.
      */
+
     public function __construct(UsersListService $userListService)
     {
         $this->userListService = $userListService;
@@ -27,6 +30,7 @@ class usersListController extends BaseController
 
         try {
             $userListService = $this->userListService->execute();
+
         } catch (Exception $exception) {
             return response()->json([
                 'error' => $exception->getMessage()
@@ -34,7 +38,9 @@ class usersListController extends BaseController
         }
 
         return response()->json([
+
             'res' => $userListService
+
         ], Response::HTTP_OK);
     }
 }
