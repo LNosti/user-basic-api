@@ -1,7 +1,7 @@
 <?php
 
 use App\Infrastructure\Controllers\UserController;
-use App\Infrastructure\Controllers\usersListController;
+use App\Infrastructure\Controllers\UsersListController;
 use App\Infrastructure\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
