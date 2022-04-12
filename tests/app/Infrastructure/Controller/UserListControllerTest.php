@@ -27,16 +27,56 @@ class UserListControllerTest extends TestCase
     /**
      * @test
      */
-    public function userWithGivenIdDoesNotExist()
+    public function errorGivingAListUser()
     {
         $this->userDataSource
-            ->expects('findById')
-            ->with(999)
+            ->expects('getList')
             ->once()
-            ->andThrow(new Exception('User not found'));
+            ->andThrow(new Exception('Hubo un error al realizar la peticion'));
 
-        $response = $this->get('/api/users/999');
+        $response = $this->get('/api/users/list');
 
-        $response->assertExactJson(['error' => 'User not found']);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(['error' => 'Hubo un error al realizar la peticion']);
     }
+
+
+    /**
+     * @test
+     */
+    public function emptyUserListReturnEmptyList()
+    {
+        $userList = [];
+        $this->userDataSource
+            ->expects('getList')
+            ->with()
+            ->once()
+            ->andReturn($userList);
+
+        $response = $this->get('/api/users/list');
+
+        $response->assertStatus(Response::HTTP_OK)->assertExactJson(['res' => '[]']);
+    }
+
+    /**
+     * @test
+     */
+    public function userListReturnsAllOfThem()
+    {
+        $user1 = new User(1,'email@email.com');
+        $user2 = new User(2,'email@email.com');
+        $user3 = new User(3,'email@email.com');
+        $userList = [$user1,$user2,$user3];
+        $this->userDataSource
+            ->expects('getList')
+            ->with()
+            ->once()
+            ->andReturn($userList);
+
+        $response = $this->get('/api/users/list');
+
+        $response->assertStatus(Response::HTTP_OK)->assertExactJson(['res' => "[{id: '1'}, {id: '2'}, {id: '3'}, ]"]);
+    }
+
+
+
 }

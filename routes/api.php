@@ -1,7 +1,7 @@
 <?php
 
-use App\Infrastructure\Controllers\GetUserController;
 use App\Infrastructure\Controllers\UserController;
+use App\Infrastructure\Controllers\usersListController;
 use App\Infrastructure\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +25,6 @@ Route::get(
     StatusController::class
 );
 
+Route::get('users/list', UsersListController::class);
 Route::get('users/{userId}', UserController::class);
-//Route::get('users/list', usersListController::class);
+

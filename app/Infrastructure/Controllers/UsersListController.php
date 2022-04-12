@@ -3,27 +3,30 @@
 namespace App\Infrastructure\Controllers;
 
 use App\Application\EarlyAdopter\UserService;
+use App\Application\EarlyAdopter\UsersListService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
+use Exception;
 
 
 class usersListController extends BaseController
 {
-    private $isEarlyAdopterService;
+    private $userListService;
 
     /**
      * UserController constructor.
      */
-    public function __construct(UserService $isEarlyAdopterService)
+    public function __construct(UsersListService $userListService)
     {
-        $this->isEarlyAdopterService = $isEarlyAdopterService;
+        $this->userListService = $userListService;
     }
 
-    public function __invoke(int $id): JsonResponse
+    public function __invoke(): JsonResponse
     {
+
         try {
-            $isEarlyAdopter = $this->isEarlyAdopterService->execute($id);
+            $userListService = $this->userListService->execute();
         } catch (Exception $exception) {
             return response()->json([
                 'error' => $exception->getMessage()
@@ -31,7 +34,7 @@ class usersListController extends BaseController
         }
 
         return response()->json([
-            'res' => $isEarlyAdopter
+            'res' => $userListService
         ], Response::HTTP_OK);
     }
 }

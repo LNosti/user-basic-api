@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserServiceTest extends TestCase
 {
-    private UserService $isEarlyAdopterService;
+    private UserService $userService;
     private UserDataSource $userDataSource;
 
     /**
@@ -23,8 +23,28 @@ class UserServiceTest extends TestCase
 
         $this->userDataSource = Mockery::mock(UserDataSource::class);
 
-        $this->isEarlyAdopterService = new UserService($this->userDataSource);
+        $this->userService = new UserService($this->userDataSource);
     }
+
+    /**
+     * @test
+     */
+    public function errorGivenUser()
+    {
+        $id = 100;
+
+
+        $this->userDataSource
+            ->expects('findById')
+            ->with($id)
+            ->once()
+            ->andThrow(new Exception('Hubo un error al realizar la peticion'));
+
+        $this->expectException(Exception::class);
+
+        $this->userService->execute($id);
+    }
+
 
     /**
      * @test
@@ -42,7 +62,7 @@ class UserServiceTest extends TestCase
 
         $this->expectException(Exception::class);
 
-        $this->isEarlyAdopterService->execute($id);
+        $this->userService->execute($id);
     }
 
 
@@ -61,28 +81,10 @@ class UserServiceTest extends TestCase
             ->once()
             ->andReturn($user);
 
-        $isUserEarlyAdopter = $this->isEarlyAdopterService->execute($id);
+        $userService = $this->userService->execute($id);
 
-        $this->assertEquals($isUserEarlyAdopter,'[{id: ‘1’, email:’email@email.com’}]');
+        $this->assertEquals($userService,'[{id: ‘1’, email:’email@email.com’}]');
     }
 
-    /**
-     * @test
-     */
-    public function userIsAnEarlyAdopter()
-    {
-        $email = 'not_early_adopter@email.com';
 
-        $user = new User(300, $email);
-
-        $this->userDataSource
-            ->expects('findByEmail')
-            ->with($email)
-            ->once()
-            ->andReturn($user);
-
-        $isUserEarlyAdopter = $this->isEarlyAdopterService->execute($email);
-
-        $this->assertTrue($isUserEarlyAdopter);
-    }
 }
