@@ -7,12 +7,11 @@ grumphp:
       config_file: null
       always_execute: false
     phpcs:
-      standard: PSR1
+      standard: PSR12
       triggered_by: [ php ]
     phpcsfixer:
       allow_risky: true
       verbose: true
       using_cache: true
-    phpmd:
-      ruleset: [ 'codesize', 'naming' ]
-      triggered_by: [ 'php' ]
+      config: '.php-cs-fixer.php'
+
