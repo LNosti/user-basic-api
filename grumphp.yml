@@ -5,4 +5,14 @@ grumphp:
   tasks:
     phpunit:
       config_file: null
-      always_execute: true
+      always_execute: false
+    phpcs:
+      standard: PSR1
+      triggered_by: [ php ]
+    phpcsfixer:
+      allow_risky: true
+      verbose: true
+      using_cache: true
+    phpmd:
+      ruleset: [ 'codesize', 'naming' ]
+      triggered_by: [ 'php' ]
